@@ -30,13 +30,13 @@ public class EmailService {
     @Value("${envio.email.nomeRemetente}")
     private String nomeRemetente;
 
-    public void enviaEmail(TarefasDTO dto){
+    public void enviaEmail(TarefasDTO dto) {
 
-        try{
+        try {
             MimeMessage mensagem = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mensagem, true, StandardCharsets.UTF_8.name());
 
-            mimeMessageHelper.setFrom(new InternetAddress(remetente,nomeRemetente));
+            mimeMessageHelper.setFrom(new InternetAddress(remetente, nomeRemetente));
             mimeMessageHelper.setTo(InternetAddress.parse(dto.getEmailUsuario()));
             mimeMessageHelper.setSubject("Notificação de Tarefa");
 
